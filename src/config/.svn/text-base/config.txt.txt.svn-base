@@ -1,0 +1,4 @@
+host::http://www.talkabroad.org
+authenticationURL::/java/get_partner_info.php
+uploadURL::/java/send_file.php
+logURL::/java/log_entry.php
