@@ -67,6 +67,7 @@ public final class TalkStrings {
 		EXIT("BUTTON_EXIT"),
 		LOGIN("BUTTON_LOGIN"),
 		CALL("BUTTON_CALL"),
+                REFRESH("BUTTON_REFRESH"),
 		HANGUP("BUTTON_HANGUP"),
 		UPLOAD("BUTTON_UPLOAD"),
 		CANCEL("BUTTON_CANCEL"),

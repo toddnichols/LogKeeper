@@ -145,6 +145,19 @@ public class TalkAbroadWebClient {
 		return file_bytes_written;
 	}
 	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        I have to work with the following 4 functions to change the STATUS functionality
+        
+        
 	/**
 	 * Sends a request to the TalkAbroadLogKeeper server.
 	 * 
@@ -331,6 +344,29 @@ public class TalkAbroadWebClient {
 		}
 		return response.trim();
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	/**
 	 * Encrypts data using the object's AES key/IV.

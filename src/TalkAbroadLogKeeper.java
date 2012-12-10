@@ -58,11 +58,33 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 	
 	private String partnerName;
 	
+        
+        
+        
+        
+//        The following two objects are the main two objects.
 	private TalkAbroadWebClient web_client = null;
-	
 	private ArrayList <TALKAppointment> appointments = new ArrayList <TALKAppointment>();
 	private TALKAppointment selectedAppointment = null;
 	
+        
+        
+        
+        
+        
+        private String email ;
+        private String password ;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	private boolean isLoggedIn;
 	
 	private Call currentcall = null;
@@ -91,17 +113,46 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 	private JLabel welcomeLabel;
 	private JLabel statusLabel;
 	private JButton callButton;
+        
+        private JButton refreshButton;
+        
 	private JButton uploadButton;
 	private JButton hangupButton;
 	private JPanel topPanel;
 	private JProgressBar progressBar;
 	private BufferedImage splashImage;
 	private BufferedImage bannerImage;
+        
+        private JLabel showDescription;
+        private javax.swing.JScrollPane assignmentDescScrollPane;
+        private javax.swing.JTextPane assignmentDescTextPane;
 	
+        
+        
+        
+        
+        
+        
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
 	public static void main(String[] args) {
+            
+             
+//            //  static {
+//                try {
+//                    System.load("/System/Library/Java/Extensions/libskype.jnilib");
+////                    /Users/parthobiswas/skype_jnilib/libskype.jnilib
+//                } catch (UnsatisfiedLinkError e) {
+//                System.err.println("Native code library failed to load.\n" + e);
+//                System.exit(1);
+//                }
+//            //  }
+            
+            
+            
+            
+            
 		try{
 			TalkStrings.loadConfigFile();
 			
@@ -119,6 +170,19 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+                            
+              
+                            
+
+//                                try {
+//                                      UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+//                                   }
+//                                catch (Exception e) {}
+
+
+                            
+                            
+                            
 				TalkAbroadLogKeeper inst = new TalkAbroadLogKeeper();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
@@ -126,6 +190,16 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		});
 	}
 	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	/**
 	 * Constructor. Calls the JFrame constructor and initializes GUI.
 	 * Sets log in status to false.
@@ -139,6 +213,19 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		checkSkypeRunning();
 	}
 	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+////////////////////////////////////////////////////////////////////   Partho, you need to check this method     
 	/**
 	 * Initialize the graphical user interface and all associated resources.
 	 * Banner and splash images are loaded here.
@@ -203,7 +290,17 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 							loginButton.setBounds(461, 6, 85, 27);
 							loginButton.addMouseListener(new MouseAdapter() {
 								public void mouseClicked(MouseEvent e){
+                                                                    
+                                                                    
+                                                                        email = emailInput.getText();
+                                                                        password = new String(passwordInput.getPassword());
+
+                                                                    
 									clickLogInButton();
+                                                                        
+                                                                        
+//                                                                        Initate only one window. 
+//                                                                        clickLogInButton();
 								}
 							});
 						}
@@ -308,19 +405,38 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 						{
 							appointmentControlPanel = new JPanel();
 							appSplitPane.add(appointmentControlPanel, JSplitPane.RIGHT);
-							appointmentControlPanel.setPreferredSize(new Dimension(640,100));
+							appointmentControlPanel.setPreferredSize(new Dimension(640,200));
 							appointmentControlPanel.setLayout(null);
-							appointmentControlPanel.setMinimumSize(new Dimension(640,100));
+							appointmentControlPanel.setMinimumSize(new Dimension(640,150));
 							{
 								welcomeLabel = new JLabel();
 								statusLabel = new JLabel();
 								callButton = new JButton();
+                                                                
+                                                                refreshButton = new JButton();
+                                                                
 								uploadButton = new JButton();
 								hangupButton = new JButton();
 								progressBar = new JProgressBar(0,100);
-								
+                                                                                                                              								
 								welcomeLabel.setText(TalkStrings.get(TalkStrings.Label.WELCOME));
 								welcomeLabel.setBounds(12, 12, 284, 14);
+                                                                
+                                                                
+                                                                showDescription = new JLabel("Assignment description shows here.");
+                                                                showDescription.setBounds(300, 12, 250, 14);
+                                                                showDescription.setVisible(true);
+                                                                
+                                                                assignmentDescScrollPane = new javax.swing.JScrollPane();
+                                                                assignmentDescTextPane = new javax.swing.JTextPane();
+                                                                assignmentDescTextPane.setEditable(false);
+                                                                assignmentDescTextPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Assignment"));
+                                                                assignmentDescTextPane.setForeground(new java.awt.Color(0, 102, 102));
+                                                                assignmentDescTextPane.setText("Description showes here");
+                                                                assignmentDescTextPane.setToolTipText("Assignment descriotion...");
+                                                                assignmentDescScrollPane.setViewportView(assignmentDescTextPane);
+                                                                assignmentDescScrollPane.setBounds(250, 12, 375, 75);
+                                                                
 								
 								statusLabel.setText("");
 								statusLabel.setBounds(210, 43, 284, 14);
@@ -336,7 +452,18 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 										clickCallButton();
 									}
 								});
-								
+
+                                                                
+								refreshButton.setText(TalkStrings.get(TalkStrings.Button.REFRESH));
+								refreshButton.setBounds(63, 80, 88, 25);
+								refreshButton.addMouseListener(new MouseAdapter() {
+									public void mouseClicked(MouseEvent evt) {
+										clickLogInButton(); // Refreshes the appointment list.
+									}
+								});
+                                                                
+                                                                
+                                                                
 								// This button is not added to the main frame
 								hangupButton.setText(TalkStrings.get(TalkStrings.Button.HANGUP));
 								hangupButton.addMouseListener(new MouseAdapter() {
@@ -356,13 +483,25 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 								appointmentControlPanel.add(welcomeLabel);
 								appointmentControlPanel.add(statusLabel);
 								appointmentControlPanel.add(callButton);
+                                                                
+                                                                appointmentControlPanel.add(refreshButton);
+                                                                
 								appointmentControlPanel.add(uploadButton);
 								appointmentControlPanel.add(progressBar);
+//                                                                appointmentControlPanel.setBackground(Color.red);
 								
 								// Initially disable the call and upload button
 								// until an appointment is selected
 								callButton.setEnabled(false);
+                                                                
+                                                                refreshButton.setEnabled(true);
+                                                                
 								uploadButton.setEnabled(false);
+                                                                
+                                                                                                                                                                                                                                                              
+//                                                                Here i have to add a text pane which shows the description of the table                                                              
+//                                                                appointmentControlPanel.add(showDescription);                                                               
+                                                                appointmentControlPanel.add(assignmentDescScrollPane);
 							}
 						}
 					}
@@ -374,6 +513,20 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		}
 		
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	private void checkSkypeRunning(){
 		int max_tries = 50;
@@ -398,6 +551,14 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			System.exit(1);
 		}
 	}
+        
+        
+        
+        
+        
+        
+        
+ ////////////////////////////////////////////////////////////////////   Partho, you need to check this method         
 	
 	public void clickCallButton(){
 		if (!callButton.isEnabled()) return;
@@ -423,6 +584,18 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		}
 		
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	public void clickHangupButton(){
 		try{
@@ -431,6 +604,18 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			displayError(e);
 		}
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	public void clickUploadButton(){
 		if (!uploadButton.isEnabled()) return;
@@ -450,6 +635,25 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			uploadConversation();
 		}	
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	/**
 	 * Activates when the window's default close button is clicked.
@@ -492,6 +696,22 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			clickExitButton();
 		}
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 	/**
 	 * Exits the application.
@@ -499,7 +719,28 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 	public void clickExitButton(){
 		System.exit(EXIT_ON_CLOSE);
 	}
-		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+////////////////////////////////////////////////////////////////////   Partho, you need to check this method  		
 	/**
 	 * Checks log in information against the database on the server.
 	 * If successful, pulls appointment information for the table
@@ -514,8 +755,8 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			debug("Constructing token to send to server.");
 
 			web_client = new TalkAbroadWebClient(
-					emailInput.getText(), 
-					new String(passwordInput.getPassword())
+					email, 
+					password
 				);
 			result = web_client.send_request(TalkStrings.getConfig("host")+TalkStrings.getConfig("authenticationURL"));
 
@@ -573,13 +814,32 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 								appointment_line[2],
 								appointment_line[3],
 								cal.getTime(),
-								appointment_line[5]
-							)
+                                                        
+                                                        
+//                                                        This line fatches the appoinment status from the Server soon after login.
+								appointment_line[5],
+                                                        
+                                                        
+                                                        
+//                                                        This line fetches the description from the server
+                                                                appointment_line[6]
+                                                        
+							)                                                                                                  
 						);
+                                                
+                                                
+//                                                Added by partho for test
+                                                for(int k= 0; k<=appointments.size()-1; k++)
+                                                {
+                                                    System.out.println(appointments.get(k).getStatus());
+                                                    System.out.println(appointments.get(k).getId());
+                                                }
 						
 						
 					}
 					
+                                        
+//                                        Thhis line showes the Welcome Screen
 					welcomeLabel.setText(TalkStrings.get(TalkStrings.Label.WELCOME) + " " + partnerName);
 					
 					isLoggedIn = true;
@@ -601,7 +861,35 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
-	
+        
+  
+        
+        
+        
+        
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+////////////////////////////////////////////////////////////////////   Partho, you need to check this method  
+         
 	public void clickAppointmentTable(){
 		int rowIndex = appointmentTable.getSelectedRow();
 		// check to see if a row is selected and there isn't a current call
@@ -610,6 +898,16 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			selectedAppointment = appointments.get(rowIndex);
 			loadRecordingFiles();
 			callButton.setEnabled(true);
+                        
+                        
+//                        Here showes the appointment descriotions
+//                        showDescription.setText(selectedAppointment.getDescription());
+//                        System.out.println(selectedAppointment.getDescription());                        
+                        
+                        
+                        
+                        
+                        
 			if (appointee_recordings.size() > 0 && mic_recordings.size() > 0)
 				uploadButton.setEnabled(true);
 			else
@@ -622,6 +920,41 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 			uploadButton.setEnabled(false);
 		}
 	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 	
 	/**
 	 * Build the prefix for the recording files using the selected appointment ID.
@@ -735,7 +1068,27 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 	 * Loads any existing recording sessions for the selected appointment.
 	 */
 	public void loadRecordingFiles(){
+            
+            
+            
+            
+            
+//                        Here showes the appointment descriotions by the side of call button          
 		debug("Loading existing recording files for appointment " + selectedAppointment.getId());
+                debug("Assignment: " + selectedAppointment.getDescription());
+//                showDescription.setText("Assignment: " + selectedAppointment.getDescription());
+                assignmentDescTextPane.setText("Assignment: " + selectedAppointment.getDescription());
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
 		appointee_recordings = new Vector<File>();
 		mic_recordings = new Vector<File>();
 
@@ -760,6 +1113,20 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 		}
 	}
 	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        I think, for third update i need to change on this method
 	public void callAppointee(){
 		// Check to see if the recordings folder exists. If not, create it.
 		File rec_dir = new File ("recordings");
@@ -872,6 +1239,12 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 					displayError(e);
 				}
 				debug("Exiting call worker thread.");
+                                
+                                
+                                
+                                clickLogInButton(); // Refreshes the appointment list after processing each call
+                                
+                                
 				return "";
 			}
 			
@@ -880,6 +1253,13 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 					label.setText(TalkStrings.get(TalkStrings.Label.CALL_STATUS) + status);
 				}
 			}
+                        
+                        
+                        
+//                        clickLogInButton();
+                        
+                        
+                        
 		}
 		
 		/**

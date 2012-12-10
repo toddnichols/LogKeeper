@@ -8,6 +8,8 @@ public class TALKAppointment {
 	private String skypeName;
 	private Date time;
 	private String status;
+        
+        private String description;
 	
 	public TALKAppointment(
 			int id, 
@@ -15,7 +17,9 @@ public class TALKAppointment {
 			String lastName, 
 			String skypeName, 
 			Date time,
-			String status
+			String status,
+                
+                        String description
 	){
 		this.id = id;
 		this.firstName = firstName;
@@ -23,6 +27,8 @@ public class TALKAppointment {
 		this.skypeName = skypeName;
 		this.time = time;
 		this.status = status;
+                
+                this.description = description;
 	}
 	
 	public int getId(){
@@ -54,4 +60,10 @@ public class TALKAppointment {
 	public String getStatus(){
 		return status;
 	}
+
+
+	public String getDescription(){
+		return description;
+	}
+
 }
