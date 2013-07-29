@@ -776,7 +776,7 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 				Integer version = Integer.valueOf(lines[0]);
 				
 				if (version <= VERSION){
-					String[] partner_line = lines[1].split(":");
+					String[] partner_line = lines[1].split(";;");
 					
 					// check to see if the recording base dir exists
 					File folder = new File(recording_basedir);
@@ -800,7 +800,7 @@ public class TalkAbroadLogKeeper extends javax.swing.JFrame {
 					debug("ZONE_OFFSET: " + (zone_offset / (1000 * 60 * 60)) + " HOURS");
 					debug("DST_OFFSET: " + (dst_offset / (1000 * 60 * 60)) + " HOURS");
 					for(int i=2; i < lines.length; i++){
-						String[] appointment_line = lines[i].split(":");
+						String[] appointment_line = lines[i].split(";;");
 						// set the UTC time in milliseconds
 						long utc_time = Long.parseLong(appointment_line[4])*1000;
 						int appointment_id = Integer.parseInt(appointment_line[0]);

@@ -1,5 +1,5 @@
 debug::yes
-host::http://www.talkabroad.com
+host::http://todd-nichols.com
 authenticationURL::/java/get_partner_info.php
 uploadURL::/java/send_file.php
 logURL::/java/log_entry.php
