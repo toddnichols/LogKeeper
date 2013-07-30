@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateDescriptor baseUrl="">
+  <entry targetMediaFileId="72" updatableVersionMin="" updatableVersionMax="" fileName="TALK_windows_1_4.exe" newVersion="1.4" newMediaFileId="72" fileSize="7413760" bundledJre="" archive="false">
+    <comment language="en" />
+  </entry>
+</updateDescriptor>
+
