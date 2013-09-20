@@ -1,0 +1,7 @@
+Server:		http://talkabroad.com
+
+User ID:	partner@talkabroad.com
+
+Pass:		talkabroad
+
+Add more test conversation from this link:	https://talkabroad.com/index/partho

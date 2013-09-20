@@ -1,3 +1,0 @@
-# List of generated media files. The columns are tab-separated:
-# id | media file type | display name | media file path
-72	windows	Windows	C:\WIN-8-HDD\JAVA CODES\NB Projects\LogKeeper_1.4-Updated\installers\OutPut\TALK_windows_1_4.exe
